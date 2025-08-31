@@ -1,0 +1,16 @@
+.cart{
+    margin-left: 120px;
+}
+.proceed{
+    margin-top: -5px;
+}
+.remove{
+    position: absolute;
+    right: -40px;
+    visibility: hidden;
+    transition: right 0.6s ease-in, visibility 0s 0.2s;
+}
+.card-body:hover .remove{
+    right: 10px;
+    visibility: visible;
+}

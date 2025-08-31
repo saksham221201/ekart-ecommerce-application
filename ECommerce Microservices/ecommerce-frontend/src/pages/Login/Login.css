@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+  }
+  .loginBox {
+    position: relative;
+    width: 380px;
+    height: 380px;
+    background: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .loginBox::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, #45f3ff, #45f3ff, #45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+  }
+  .loginBox::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, #ff2770, #ff2770, #ff2770);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+  }
+  
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .loginBox form {
+    position: absolute;
+    inset: 4px;
+    background: #222;
+    padding: 30px 40px;
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+  .loginBox form h2 {
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+  }
+  .loginBox form .inputBox {
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+  }
+  .loginBox form .inputBox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: #23242a;
+    font-size: 1em;
+    transition: 0.5s;
+    z-index: 10;
+  }
+  .loginBox form .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 0px 10px;
+    pointer-events: none;
+    color: #8f8f8f;
+    font-size: 1em;
+    transition: 0.5s;
+  }
+  .loginBox form .inputBox input:valid ~ span,
+  .loginBox form .inputBox input:focus ~ span {
+    color: #fff;
+    font-size: 0.85em;
+    transform: translateY(-34px);
+  }
+  .loginBox form .inputBox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    pointer-events: none;
+  }
+  .loginBox form .inputBox input:valid ~ i,
+  .loginBox form .inputBox input:focus ~ i {
+    height: 44px;
+  }
+  .loginBox form .links {
+    display: flex;
+    justify-content: space-between;
+  }
+  .loginBox form .links a {
+    margin: 10px 0px;
+    font-size: 0.85em;
+    color: #8f8f8f;
+    text-decoration: none;
+  }
+  .loginBox form .links a:hover,
+  .loginBox form .links a:nth-child(2) {
+    color: #ffffff;
+  }
+  .loginBox form input[type="submit"] {
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 100px;
+    margin-top: 10px;
+  }
+  .loginBox form input[type="submit"]:active {
+    opacity: 0.8;
+  }

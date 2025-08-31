@@ -1,0 +1,135 @@
+[
+    {
+        "productId": 1,
+        "productName": "Samsung Galaxy S24 Ultra 5G",
+        "productCategory": "Mobiles",
+        "productBrand": "Samsung",
+        "description": "Meet Galaxy S24 Ultra, the ultimate form of Galaxy Ultra with a new titanium exterior and a 17.25cm (6.8') flat display. A new way to search is here with Circle to Search. AI Smartphone (Titanium Black, 12GB, 512GB Storage)",
+        "productPrice": 139999.0,
+        "productRating": 4.3,
+        "imageUrl": [
+            "https://m.media-amazon.com/images/I/81vxWpPpgNL._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/81lek2iav1L._SX679_.jpg"
+        ],
+        "bannerImageUrl": [
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/1aaabbf8-ac51-4eb4-9e69-a23df371cb4c.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/458590b4-f1b2-4f04-8186-21db5f5574a8.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/978d7680-ac62-46e1-843a-b653aa91e6c7.__CR0,0,1464,600_PT0_SX1464_V1___.jpg"
+        ],
+        "videoUrl": "3hPoEmlBQdY"
+    },
+    {
+        "productId": 2,
+        "productName": "Apple iPhone 15 Pro",
+        "productCategory": "Mobiles",
+        "productBrand": "Apple",
+        "description": "FORGED IN TITANIUM — iPhone 15 Pro has a strong and light aerospace-grade titanium design. ADVANCED DISPLAY — The 6.1” Super Retina XDR display with ProMotion ramps up refresh rates to 120Hz. GAME-CHANGING A17 PRO CHIP and POWERFUL PRO CAMERA SYSTEM.",
+        "productPrice": 127990.0,
+        "productRating": 4.2,
+        "imageUrl": [
+            "https://m.media-amazon.com/images/I/81SigpJN1KL._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/81CgtwSII3L._SX679_.jpg"
+        ],
+        "bannerImageUrl": [
+            "https://m.media-amazon.com/images/G/31/img21/Wireless/Madhav/september/Apple/River15pro/R1AEBB1._CB575355692_.jpg",
+            "https://m.media-amazon.com/images/G/31/img21/Wireless/Madhav/september/Apple/River/R1807_1._CB575346353_.jpg",
+            "https://m.media-amazon.com/images/G/31/img21/Wireless/ssserene/AppleNPI/Aplus/r1805_r1595_Product_Page_Flex_Module_Avail_Amazon_Desktop__en-IN_01._CB595156976_.png"
+        ],
+        "videoUrl": "wqcjKkyuoZk"
+    },
+    {
+        "productId": 3,
+        "productName": "OnePlus 12R",
+        "productCategory": "Mobiles",
+        "productBrand": "OnePlus",
+        "description": "Fast & Smooth for years: Snapdragon 8 Gen 2 Mobile Platform, Up to 16GB of LPDDR5X RAM. Computational Photography That's Incomparable: RAW HDR Algorithm, 50MP Sony IMX890 Camera and Ultra-wide Camera 112° FoV Sony IMX355",
+        "productPrice": 42999.0,
+        "productRating": 4.3,
+        "imageUrl": [
+            "https://m.media-amazon.com/images/I/717JX3femML._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/71XNeka-BRL._SX679_.jpg"
+        ],
+        "bannerImageUrl": [
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/67500b5f-b206-41f4-b057-ac57f119c168.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/91ad6076-f1b6-4ba7-b0d8-311895aaba30.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/66bcf2d7-e68f-4af3-8f7b-f78c3e94a163.__CR0,0,1464,600_PT0_SX1464_V1___.jpg"
+        ],
+        "videoUrl": "xhdkrs1BFhw"
+    },
+    {
+        "productId": 4,
+        "productName": "Redmi Note 13 Pro+",
+        "productCategory": "Mobiles",
+        "productBrand": "Xioami",
+        "description": "Display: 6.67 Inches; 120 Hz AMOLED 1.5K Display with Corning Gorilla Glass Victus. Processor:- Snapdragon 7s Gen 2 Mobile Platform - Octa-core Processor. Resolution: 2712 x 1220 Pixels; Dolby Vision, 68.7billion colors, 1800nits Peak Brightness.",
+        "productPrice": 31999.0,
+        "productRating": 3.8,
+        "imageUrl": [
+            "https://m.media-amazon.com/images/I/71XQD0wtMPL._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/41azS4pD-mL.jpg"
+        ],
+        "bannerImageUrl": [
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/2fbcdc42-7431-4750-bad8-39266ab948b3.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/98d62175-542c-445b-ba0f-69f9c08e0d2e.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/34803e8b-8b46-4a5e-bfb8-5042ec986745.__CR0,0,1464,600_PT0_SX1464_V1___.jpg"
+        ],
+        "videoUrl": "zYa9N4-wnNc"
+    },
+    {
+        "productId": 5,
+        "productName": "SAMSUNG Galaxy S23 FE 5G",
+        "productCategory": "Mobiles",
+        "productBrand": "Samsung",
+        "description": "Premium Design & Display: Experience the iconic design heritage of Galaxy S23. Camera: Experience Galaxy S23 FE’s cutting edge camera. Performance: S23 FE offers a better & smoother gaming experience",
+        "productPrice": 49999.0,
+        "productRating": 3.7,
+        "imageUrl": [
+            "https://m.media-amazon.com/images/I/610Q2I5Or8L._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/617l83eY1rL._SX679_.jpg"
+        ],
+        "bannerImageUrl": [
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/1aaabbf8-ac51-4eb4-9e69-a23df371cb4c.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/458590b4-f1b2-4f04-8186-21db5f5574a8.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/978d7680-ac62-46e1-843a-b653aa91e6c7.__CR0,0,1464,600_PT0_SX1464_V1___.jpg"
+        ],
+        "videoUrl": "p0DDVS5hyCA"
+    },
+    {
+        "productId": 6,
+        "productName": "Realme narzo N53",
+        "productCategory": "Mobiles",
+        "productBrand": "Realme",
+        "description": "Enjoy smooth multitasking and effortless app switching with the powerful 8GB dynamic RAM. Experience lightning-fast charging with the 33W SUPERVOOC technology, the slim and sleek 7.49mm design adds a touch of elegance to your device, 50MP AI camera.",
+        "productPrice": 7499.0,
+        "productRating": 4.0,
+        "imageUrl": [
+            "https://m.media-amazon.com/images/I/71dEY4Neo3L._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/71DSxfKzkJL._SX679_.jpg"
+        ],
+        "bannerImageUrl": [
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/99f9ecbe-9e96-4adb-9151-f72c29acc66b.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/cb944971-e2cd-43d2-a984-b332064a5593.__CR0,0,1464,600_PT0_SX1464_V1___.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/58a5e597-aad6-4d59-928e-bd0984dec019.__CR0,0,1464,600_PT0_SX1464_V1___.jpg"
+        ],
+        "videoUrl": "CRN2RH89yY4"
+    },
+    {
+        "productId": 7,
+        "productName": "boAt Nirvana Ion TWS Earbuds",
+        "productCategory": "Earbuds",
+        "productBrand": "Boat",
+        "description": "Playback- boAt Nirvana Ion comes with a massive playback of 120 hours including 24 hours of playback per charge. Crystal Bionic Sound with Dual Modes. These earbuds are equipped with Beast Mode which offer low latency of 60ms. IP Rating- Its IPX4 rating.",
+        "productPrice": 1999.0,
+        "productRating": 3.9,
+        "imageUrl": [
+            "https://m.media-amazon.com/images/I/61NDPRXm9XL._SX679_.jpg",
+            "https://m.media-amazon.com/images/I/71HtYUu-gVL._SX679_.jpg"
+        ],
+        "bannerImageUrl": [
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/e71c844d-b45a-486a-b633-f8ca1e9e4059.__CR0,0,1464,600_PT0_SX1464_V1___.png",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/27f4299a-b9d6-45ce-a33a-f283822be8a9.__CR0,0,1464,600_PT0_SX1464_V1___.png",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/b665da86-6339-441c-8ac4-fc9aeeefcc94.__CR0,0,1464,600_PT0_SX1464_V1___.png"
+        ],
+        "videoUrl": "Ce4l9DsLOmU"
+    }
+]
