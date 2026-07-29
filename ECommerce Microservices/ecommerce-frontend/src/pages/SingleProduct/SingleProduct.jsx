@@ -16,9 +16,9 @@ import {
 } from "../../constants/Constant";
 
 function SingleProduct({ showSuccessAlert, setErrorMessage }) {
-  // Using useParams from react-router-dom to get the userId from the URL
   const { productId } = useParams();
   const dispatch = useDispatch();
+
   const product = useSelector((state) => state.productByIdSlice);
   const cart = useSelector((state) => state.cartSlice);
   const userId = useSelector((state) => state.authSlice.user?.userId);
@@ -28,21 +28,37 @@ function SingleProduct({ showSuccessAlert, setErrorMessage }) {
 
   const navigate = useNavigate();
 
-  // State to manage fields
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     dispatch(getProductById(productId));
     dispatch(getReviewByProductId(productId));
-  }, [dispatch, productId]);
+
+    if (userId) {
+      dispatch(getCartByUserId(userId));
+    }
+  }, [dispatch, productId, userId]);
+
+
+  const productData = product.data;
+
+  // This is now AFTER all hooks
+  if (!productData) {
+    return (
+      <div className="container mt-5 text-center text-white">
+        <h3>Loading Product...</h3>
+      </div>
+    );
+  }
 
   // Function to check if the product is present in the cart
-  const addedToCart = (productId) => {
-    return (
-      cart.data.products.filter((product) => product.productId === productId)
-        .length > 0
-    );
-  };
+const addedToCart = (productId) => {
+  return (
+    cart.data?.products?.some(
+      (product) => product.productId === productId
+    ) ?? false
+  );
+};
 
   // Function to Update Cart
   const updateCart = async (cartId, productId) => {
@@ -185,16 +201,16 @@ function SingleProduct({ showSuccessAlert, setErrorMessage }) {
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <img
-                  src={product.data.imageUrl[0]}
-                  alt={product.data.productName}
+                  src={productData.imageUrl?.[0]}
+                  alt={productData.productName}
                   width={500}
                   height={500}
                 />
               </div>
               <div className="carousel-item">
                 <img
-                  src={product.data.imageUrl[1]}
-                  alt={product.data.productName}
+                  src={productData.imageUrl?.[1]}
+                  alt={productData.productName}
                   width={500}
                   height={500}
                 />
@@ -227,13 +243,13 @@ function SingleProduct({ showSuccessAlert, setErrorMessage }) {
           </div>
           <div className="right" style={styles.right}>
             <h4 className="text-white">
-              <b>{product.data.productName}</b>
+              <b>{productData.productName}</b>
             </h4>
             <h4 className="text-white">
               <p className="badge text-bg-warning me-3">
-                &#8377;{product.data.productPrice}
+                &#8377;{productData.productPrice}
               </p>
-              <b>{product.data.productRating}</b>{" "}
+              <b>{productData.productRating}</b>{" "}
               <i className="bi bi-star-fill" style={{ color: "#F5961D" }}></i>
             </h4>
             <div className="embed-responsive embed-responsive-16by9">
@@ -242,13 +258,13 @@ function SingleProduct({ showSuccessAlert, setErrorMessage }) {
                 src={`https://www.youtube.com/embed/${product.data.videoUrl}`}
                 width={560}
                 height={315}
-                title={product.data.productName}
+                title={productData.productName}
                 allowFullScreen
                 style={{ border: "2px solid white", borderRadius: "20px" }}
               ></iframe>
             </div>
             <p className="text-white fs-5 text">{product.data.description}</p>
-            {addedToCart(product.data.productId) ? (
+            {addedToCart(productData.productId) ? (
               <Link to="#" style={{ color: "dark", textDecoration: "none" }}>
                 <button className="btn btn-info" disabled>
                   Added To Cart
@@ -258,8 +274,8 @@ function SingleProduct({ showSuccessAlert, setErrorMessage }) {
               <button
                 className="btn btn-primary"
                 onClick={() =>
-                  updateCart(cart.data.cartId, product.data.productId)
-                }
+    updateCart(cart.data?.cartId, productData.productId)
+}
               >
                 <Link to="#" style={{ color: "white", textDecoration: "none" }}>
                   Add To Cart
@@ -272,11 +288,11 @@ function SingleProduct({ showSuccessAlert, setErrorMessage }) {
                 className="btn btn-success mx-2"
                 data-bs-toggle="modal"
                 data-bs-target={
-                  cart.data.products.length > 0
-                    ? "#confirmModal"
-                    : "#orderModal"
-                }
-                onClick={() => setSelectedProduct(product.data)}
+    (cart.data?.products?.length ?? 0) > 0
+        ? "#confirmModal"
+        : "#orderModal"
+}
+                onClick={() => setSelectedProduct(productData)}
               >
                 Buy Now{" "}
               </button>
@@ -360,7 +376,7 @@ function SingleProduct({ showSuccessAlert, setErrorMessage }) {
               </Link>
             </button>
           </div>
-          {reviews.length > 0 ? (
+          {reviews?.length > 0 ? (
             reviews.map((review) => (
               <div className="card my-3" key={review.reviewId}>
                 <div className="card-body">
