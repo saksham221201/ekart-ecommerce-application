@@ -18,7 +18,7 @@ public class OrderScheduler {
         this.orderService = orderService;
     }
 
-    @Scheduled(cron = "0 */1 * * * *") // It is scheduled to run every 1 minute but for 10 minutes its ("0 */10 * * * *")
+    @Scheduled(cron = "0 */10 * * * *") // It is scheduled to run every 10 minutes
     // Completing the Order after 24 Hours but checking the difference of NOW and OrderTimestamp
     public void completeOrder(){
         List<OrderDetailsResponse> orders = orderService.getAllOrders();
