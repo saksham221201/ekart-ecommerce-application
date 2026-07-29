@@ -43,15 +43,15 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
   // Function to filter out products present in the cart
   const inCart = (productId) => {
     return (
-      cart.data.products.filter((product) => product.productId === productId)
-        .length > 0
+      cart.data?.products?.some((product) => product.productId === productId) ??
+      false
     );
   };
 
   // Function to filter out products present in the cart
   const inOrders = (productId) => {
     return orders.some((order) =>
-      order.products.some((product) => product.productId === productId)
+      order.products.some((product) => product.productId === productId),
     );
   };
 
@@ -69,7 +69,7 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
             userId: userId,
             productId: [productId],
           }),
-        }
+        },
       );
 
       if (updateCartResponse.ok) {
@@ -153,8 +153,8 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
     setSearchQuery(e.target.value);
   };
 
-  const filteredProducts = products.data.filter((product) =>
-    product.productName.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredProducts = (products.data ?? []).filter((product) =>
+    product.productName.toLowerCase().includes(searchQuery.toLowerCase()),
   );
   console.log("Filtered:", filteredProducts);
 
@@ -275,7 +275,7 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
                             <button
                               className="btn btn-sm btn-primary"
                               onClick={() =>
-                                updateCart(cart.data.cartId, product.productId)
+                                updateCart(cart.data?.cartId, product.productId)
                               }
                             >
                               Add To Cart
@@ -290,7 +290,7 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
                             className="btn btn-sm btn-success"
                             data-bs-toggle="modal"
                             data-bs-target={
-                              cart.data.products.length > 0
+                              (cart.data?.products?.length ?? 0) > 0
                                 ? "#confirmModal"
                                 : "#orderModal"
                             }
@@ -388,7 +388,7 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
                           className="btn btn-sm btn-success"
                           data-bs-toggle="modal"
                           data-bs-target={
-                            cart.data.products.length > 0
+                            (cart.data?.products?.length ?? 0) > 0
                               ? "#confirmModal"
                               : "#orderModal"
                           }
