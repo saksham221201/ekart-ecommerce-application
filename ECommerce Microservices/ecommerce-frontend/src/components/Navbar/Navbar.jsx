@@ -16,7 +16,7 @@ function Navbar(props) {
   const firstName = useSelector((state) => state.userSlice.data?.firstName);
   const lastName = useSelector((state) => state.userSlice.data?.lastName);
   const numberOfProductsinCart = useSelector(
-    (state) => state.cartSlice.data.products.length
+    (state) => state.cartSlice.data?.products?.length ?? 0
   );
   const numberOfOrders = useSelector((state) => state.orderSlice.data.length);
   const dispatch = useDispatch();
