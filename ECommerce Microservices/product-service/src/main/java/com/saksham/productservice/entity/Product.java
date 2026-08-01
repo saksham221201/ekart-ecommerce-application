@@ -12,6 +12,7 @@ public class Product {
     private String productName;
     private String productCategory;
     private String productBrand;
+    private Long quantity;
     @Column(columnDefinition = "TEXT", length = 1000)
     private String description;
     private double productPrice;
@@ -37,6 +38,7 @@ public class Product {
         this.productName = productName;
         this.productCategory = productCategory;
         this.productBrand = productBrand;
+        this.quantity = quantity;
         this.description = description;
         this.productPrice = productPrice;
         this.productRating = productRating;
@@ -93,6 +95,10 @@ public class Product {
     public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
+
+    public Long getQuantity() { return quantity; }
+
+    public void setQuantity(Long quantity) { this.quantity = quantity; }
 
     public float getProductRating() {
         return productRating;
