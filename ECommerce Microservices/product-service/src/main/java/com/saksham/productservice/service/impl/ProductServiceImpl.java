@@ -3,12 +3,17 @@ package com.saksham.productservice.service.impl;
 import com.saksham.productservice.constant.Constant;
 import com.saksham.productservice.dao.ProductDao;
 import com.saksham.productservice.entity.Product;
-import com.saksham.productservice.exception.DuplicateEntryException;
 import com.saksham.productservice.exception.EmptyInputException;
 import com.saksham.productservice.exception.ResourceNotFoundException;
 import com.saksham.productservice.payload.PageInfo;
 import com.saksham.productservice.payload.ProductPageInfo;
 import com.saksham.productservice.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +25,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@CacheConfig(cacheNames = {"products"})
 public class ProductServiceImpl implements ProductService {
 
+    private static final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
     private final ProductDao productDao;
 
     public ProductServiceImpl(ProductDao productDao){
@@ -35,9 +42,10 @@ public class ProductServiceImpl implements ProductService {
             throw new EmptyInputException("Input cannot be null!!", HttpStatus.BAD_REQUEST.value());
         }
 
-        // Checking whether the Product already exists in the database or not
+        // Checking whether the Product already exists in the database or not, updating the quantity if it exists
         if(productDao.findByProductName(product.getProductName()).isPresent()){
-            throw new DuplicateEntryException("Product already exists", HttpStatus.BAD_REQUEST.value());
+            Product existingProduct = productDao.findByProductName(product.getProductName()).get();
+            existingProduct.setQuantity(existingProduct.getQuantity() + product.getQuantity());
         }
 
         // Saving the Product
@@ -45,9 +53,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(value = "products", key = "#productId")
     public Product getProductByProductId(Long productId) {
         Optional<Product> existingProduct = productDao.findById(productId);
         if(existingProduct.isPresent()){
+            log.info("Called");
             return existingProduct.get();
         }
         throw new ResourceNotFoundException("Product not found with id: " + productId, HttpStatus.NOT_FOUND.value());
@@ -71,6 +81,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CachePut(value="products", key="#productId")
     public Product updateProductDetails(Long productId, Product product) {
         // Checking if any of the inputs is null
         if(product.getProductName().isBlank() || product.getProductCategory().isBlank() || product.getProductPrice() <= 0){
@@ -89,6 +100,7 @@ public class ProductServiceImpl implements ProductService {
         updateProduct.setDescription(product.getDescription());
         updateProduct.setProductPrice(product.getProductPrice());
         updateProduct.setProductRating(product.getProductRating());
+        updateProduct.setQuantity(product.getQuantity());
         updateProduct.setImageUrl(product.getImageUrl());
         updateProduct.setBannerImageUrl(product.getBannerImageUrl());
         updateProduct.setVideoUrl(product.getVideoUrl());
@@ -144,6 +156,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CacheEvict(value="products", key="#productId")
     public void deleteProduct(Long productId) {
         Optional<Product> existingProduct = productDao.findById(productId);
         if(existingProduct.isEmpty()){
