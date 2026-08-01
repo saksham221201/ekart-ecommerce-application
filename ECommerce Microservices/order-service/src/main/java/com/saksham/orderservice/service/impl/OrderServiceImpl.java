@@ -1,11 +1,14 @@
 package com.saksham.orderservice.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.saksham.orderservice.constant.Constant;
-import com.saksham.orderservice.dao.OrderDao;
+import com.saksham.orderservice.repository.OrderDao;
 import com.saksham.orderservice.entity.*;
 import com.saksham.orderservice.exception.BadRequestException;
 import com.saksham.orderservice.exception.ResourceNotFoundException;
 import com.saksham.orderservice.payload.OrderDetailsResponse;
+import com.saksham.orderservice.repository.OutboxRepository;
 import com.saksham.orderservice.service.CartServiceClient;
 import com.saksham.orderservice.service.OrderService;
 import com.saksham.orderservice.service.ProductServiceClient;
@@ -22,19 +25,24 @@ import java.util.*;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderDao orderDao;
+    private final ObjectMapper objectMapper;
+    private final OutboxRepository outboxRepository;
     private final ProductServiceClient productServiceClient;
     private final UserServiceClient userServiceClient;
     private final CartServiceClient cartServiceClient;
 
-    public OrderServiceImpl(OrderDao orderDao, ProductServiceClient productServiceClient, UserServiceClient userServiceClient, CartServiceClient cartServiceClient){
+    public OrderServiceImpl(OrderDao orderDao, ObjectMapper objectMapper, OutboxRepository outboxRepository, ProductServiceClient productServiceClient, UserServiceClient userServiceClient, CartServiceClient cartServiceClient){
         this.orderDao = orderDao;
+        this.objectMapper = objectMapper;
+        this.outboxRepository = outboxRepository;
         this.productServiceClient = productServiceClient;
         this.userServiceClient = userServiceClient;
         this.cartServiceClient = cartServiceClient;
     }
 
     @Override
-    public OrderDetailsResponse placeOrder(Order order) {
+    @Transactional
+    public OrderDetailsResponse placeOrder(Order order) throws JsonProcessingException {
         // Getting the Products from OpenFeign Client of all the productIds
         List<Product> products = productServiceClient.getProductsByIds(order.getProductId());
 
@@ -52,6 +60,15 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderStatus(Constant.CREATED);
         Cart cart = cartServiceClient.emptyCart(user.getUserId());
         orderDao.save(order);
+
+        Outbox outbox = Outbox.builder()
+                .aggregateId(order.getOrderId().toString())
+                .payload(objectMapper.writeValueAsString(order))
+                .createdAt(LocalDateTime.now())
+                .processed(false)
+                .build();
+        outboxRepository.save(outbox);
+
         return new OrderDetailsResponse(order.getOrderId(), order.getQuantity(), total, order.getOrderStatus(), order.getTimestamp(), products, user);
     }
 
