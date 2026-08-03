@@ -19,9 +19,12 @@ function Navbar(props) {
   const userId = useSelector((state) => state.authSlice.user?.userId);
   const firstName = useSelector((state) => state.userSlice.data?.firstName);
   const lastName = useSelector((state) => state.userSlice.data?.lastName);
-  const numberOfProductsinCart = useSelector(
-    (state) => state.cartSlice.data?.products?.length ?? 0
-  );
+  const numberOfProductsinCart = useSelector((state) => {
+    const cartData = state.cartSlice.data;
+    const isDummyCart = cartData?.cartId === 0;
+    return isDummyCart ? 0 : cartData?.products?.length ?? 0;
+  });
+
   const numberOfOrders = useSelector(
     (state) => state.orderSlice.data?.length ?? 0
   );
