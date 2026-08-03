@@ -50,8 +50,8 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
 
   // Function to filter out products present in the cart
   const inOrders = (productId) => {
-    return orders.some((order) =>
-      order.products.some((product) => product.productId === productId),
+    return (orders ?? []).some((order) =>
+      order.products.some((product) => product.productId === productId)
     );
   };
 
@@ -69,7 +69,7 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
             userId: userId,
             productId: [productId],
           }),
-        },
+        }
       );
 
       if (updateCartResponse.ok) {
@@ -154,7 +154,7 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
   };
 
   const filteredProducts = (products.data ?? []).filter((product) =>
-    product.productName.toLowerCase().includes(searchQuery.toLowerCase()),
+    product.productName.toLowerCase().includes(searchQuery.toLowerCase())
   );
   console.log("Filtered:", filteredProducts);
 
@@ -310,7 +310,7 @@ function Welcome({ showSuccessAlert, setErrorMessage }) {
               </div>
             )
           ) : (
-            products.data.map((product) => (
+            (products.data ?? []).map((product) => (
               <div className="col-md-4" key={product.productId}>
                 <div className="card mb-5 ms-4" style={{ width: "20rem" }}>
                   <img

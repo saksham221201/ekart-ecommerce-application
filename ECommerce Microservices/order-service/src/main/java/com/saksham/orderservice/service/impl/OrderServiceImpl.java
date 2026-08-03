@@ -3,7 +3,7 @@ package com.saksham.orderservice.service.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.saksham.orderservice.constant.Constant;
-import com.saksham.orderservice.repository.OrderDao;
+import com.saksham.orderservice.dao.OrderDao;
 import com.saksham.orderservice.entity.*;
 import com.saksham.orderservice.exception.BadRequestException;
 import com.saksham.orderservice.exception.ResourceNotFoundException;

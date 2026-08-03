@@ -18,9 +18,12 @@ function Cart({ showSuccessAlert, setErrorMessage }) {
   const userId = useSelector((state) => state.authSlice.user?.userId);
   const email = useSelector((state) => state.authSlice.user?.email);
 
+  const isDummyCart = cart.data?.cartId === 0;
+  const cartProducts = isDummyCart ? [] : cart.data?.products ?? [];
+
   let productDetails = "";
 
-  cart.data.products.forEach((product) => {
+  cartProducts.forEach((product) => {
     productDetails += `
       <h4>Product Name: ${product.productName}</h4> <h4>Price: <b>&#8377;${product.productPrice}</b></h4>
       <img src=${product.imageUrl} alt="Product Image" />
@@ -31,7 +34,7 @@ function Cart({ showSuccessAlert, setErrorMessage }) {
 
   // Calculating subTotal of the cart
   let subTotal = 0.0;
-  cart.data.products.forEach((product) => {
+  cartProducts.forEach((product) => {
     subTotal += product.productPrice;
   });
 
@@ -142,26 +145,26 @@ function Cart({ showSuccessAlert, setErrorMessage }) {
             </span>
           </h4>
         </div>
-        {cart && cart.data.products.length > 0 && (
+        {cart && cartProducts.length > 0 && (
           <div className="d-flex flex-row-reverse mb-2">
             <button
               className="btn btn-success proceed"
               data-bs-toggle="modal"
               data-bs-target="#staticBackdrop"
             >
-              Proceed to Buy ({cart.data.products.length}
-              {cart.data.products.length > 1 ? " items" : " item"})
+              Proceed to Buy ({cartProducts.length}
+              {cartProducts.length > 1 ? " items" : " item"})
             </button>
           </div>
         )}
-        {cart && cart.data.products.length === 0 && (
+        {cart && cartProducts.length === 0 && (
           <div className="alert alert-danger" role="alert">
             Cart is Empty! No products in the cart
           </div>
         )}
-        {cart && cart.data.products.length > 0 && (
+        {cart && cartProducts.length > 0 && (
           <div className="row">
-            {cart.data.products
+            {cartProducts
               .filter((productId, index, self) => {
                 return self.indexOf(productId) === index;
               })

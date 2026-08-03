@@ -1,5 +1,6 @@
 package com.saksham.orderservice.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.saksham.orderservice.entity.Order;
 import com.saksham.orderservice.payload.OrderDetailsResponse;
 import com.saksham.orderservice.service.OrderService;
@@ -21,7 +22,7 @@ public class OrderController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<OrderDetailsResponse> placeOrder(@RequestBody Order order){
+    public ResponseEntity<OrderDetailsResponse> placeOrder(@RequestBody Order order) throws JsonProcessingException {
         OrderDetailsResponse createdOrder = orderService.placeOrder(order);
         return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
     }

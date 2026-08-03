@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/reducers/slices/authSlice";
-import { GET_ALL_CATEGORIES_URL, GET_ALL_BRANDS_URL, LOGOUT_SUCCESS_MESSAGE } from "../../constants/Constant";
+import {
+  GET_ALL_CATEGORIES_URL,
+  GET_ALL_BRANDS_URL,
+  LOGOUT_SUCCESS_MESSAGE,
+} from "../../constants/Constant";
 import logoImage from "../../assets/logo.png";
 import "./Navbar.css";
 
@@ -18,7 +22,9 @@ function Navbar(props) {
   const numberOfProductsinCart = useSelector(
     (state) => state.cartSlice.data?.products?.length ?? 0
   );
-  const numberOfOrders = useSelector((state) => state.orderSlice.data.length);
+  const numberOfOrders = useSelector(
+    (state) => state.orderSlice.data?.length ?? 0
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -99,19 +105,25 @@ function Navbar(props) {
               </NavLink>
             </li>
             <li className="nav-item dropdown">
-              {isLoggedIn && <Link
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Categories
-              </Link>}
+              {isLoggedIn && (
+                <Link
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Categories
+                </Link>
+              )}
               <ul className="dropdown-menu">
                 {categories.map((category, index) => (
                   <li key={index}>
-                    <Link className="dropdown-item" to={`/category/${category}`} key={index}>
+                    <Link
+                      className="dropdown-item"
+                      to={`/category/${category}`}
+                      key={index}
+                    >
                       {category}
                     </Link>
                   </li>
@@ -119,19 +131,25 @@ function Navbar(props) {
               </ul>
             </li>
             <li className="nav-item dropdown">
-              {isLoggedIn && <Link
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Brands
-              </Link>}
+              {isLoggedIn && (
+                <Link
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Brands
+                </Link>
+              )}
               <ul className="dropdown-menu">
                 {brands.map((brand, index) => (
                   <li key={index}>
-                    <Link className="dropdown-item" to={`/brand/${brand}`} key={index}>
+                    <Link
+                      className="dropdown-item"
+                      to={`/brand/${brand}`}
+                      key={index}
+                    >
                       {brand}
                     </Link>
                   </li>
@@ -143,9 +161,14 @@ function Navbar(props) {
             <div className="d-flex">
               <span className="text-white mt-2 mx-2">
                 Hello,{" "}
-                <Link to="/profile" style={{textDecoration: "none", color: "white"}}><i>
-                  {firstName} {lastName}
-                </i></Link>
+                <Link
+                  to="/profile"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  <i>
+                    {firstName} {lastName}
+                  </i>
+                </Link>
               </span>
               <Link to="/orders">
                 <button className="btn btn-success">
